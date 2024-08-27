@@ -28,6 +28,16 @@ jobs:
 
       - name: Results
         run: |
+          output = $(cat << EOF
+          echo Trigger Found: 
           echo ${{ steps.analyze_comment.outputs.trigger_found }}
+          echo
+          echo Trigger List:
           echo ${{ steps.analyze_comment.outputs.triggers }}
+          echo
+          echo Comment: 
           echo ${{ steps.analyze_comment.outputs.comment }}
+          EOF
+          )
+          
+          echo "output<<EOF"$'\n'"$output"$'\n'EOF >> $GITHUB_OUTPUT
