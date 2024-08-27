@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ciscorucinski/action-spam-handler@main
         with:
-          personal_access_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_access_token: ${{ secrets.PAT }}
           delete_comment: 'true'
           remote_repository: 'ciscorucinski/private_repo'
           trigger_file: 'triggers.txt'
