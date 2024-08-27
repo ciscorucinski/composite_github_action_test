@@ -14,10 +14,20 @@ jobs:
     name: Analyze newly created comment
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: ciscorucinski/action-spam-handler@main
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Analyze comment
+        id: analyze_comment
+        uses: ciscorucinski/action-spam-handler@main
         with:
           personal_access_token: ${{ secrets.PAT }}
           delete_comment: 'true'
           remote_repository: 'ciscorucinski/private_repo'
           trigger_file: 'triggers.txt'
+
+      - name: Results
+        run: |
+          echo ${{ steps.analyze_comment.outputs.trigger_found }}
+          echo ${{ steps.analyze_comment.outputs.triggers }}
+          echo ${{ steps.analyze_comment.outputs.comment }}
