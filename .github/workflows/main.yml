@@ -1,1 +1,23 @@
+name: Analyze Comments
 
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  analyze_comments:
+    runs-on: ubuntu-latest
+    name: Analyze newly created comment
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ciscorucinski/action-spam-handler@main
+        with:
+          personal_access_token: ${{ secrets.GITHUB_TOKEN }}
+          delete_comment: 'true'
+          remote_repository: 'ciscorucinski/private_repo'
+          trigger_file: 'triggers.txt'
