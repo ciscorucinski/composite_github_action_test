@@ -22,22 +22,23 @@ jobs:
         uses: ciscorucinski/action-spam-handler@main
         with:
           personal_access_token: ${{ secrets.PAT }}
-          delete_comment: 'true'
           remote_repository: 'ciscorucinski/private_repo'
           trigger_file: 'triggers.txt'
+          delete_comment: 'true'
+          block_commenter: 'false'
 
-      - name: Results
-        run: |
-          {
-            echo 'output << EOF'
-            echo Trigger Found: 
-            echo ${{ steps.analyze_comment.outputs.trigger_found }}
-            echo
-            echo Trigger List:
-            echo ${{ steps.analyze_comment.outputs.triggers }}
-            echo
-            echo Comment: 
-            echo ${{ steps.analyze_comment.outputs.comment }}
-            echo EOF
-          } >> $GITHUB_OUTPUT
+      # - name: Results
+      #   run: |
+      #     {
+      #       echo 'output<<EOF'
+      #       echo Trigger Found: 
+      #       echo ${{ steps.analyze_comment.outputs.trigger_found }}
+      #       echo
+      #       echo Trigger List:
+      #       echo ${{ steps.analyze_comment.outputs.triggers }}
+      #       echo
+      #       echo Comment: 
+      #       echo ${{ steps.analyze_comment.outputs.comment }}
+      #       echo EOF
+      #     } >> $GITHUB_OUTPUT
           
