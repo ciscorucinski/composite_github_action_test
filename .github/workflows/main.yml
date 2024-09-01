@@ -27,6 +27,10 @@ jobs:
           delete_comment: 'true'
           block_commenter: 'false'
 
+      - name: Results
+        run: |
+          echo ${{ steps.analyze_comment.outputs.is_comment_deleted }}
+        
       # - name: Results
       #   run: |
       #     {
