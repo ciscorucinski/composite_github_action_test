@@ -29,7 +29,7 @@ jobs:
 
       - name: Results
         run: |
-          echo "output=$(echo ${{ steps.analyze_comment.outputs.is_comment_deleted }})" >> $GITHUB_OUTPUT
+          echo ${{ steps.analyze_comment.outputs.is_comment_deleted }}
         shell: bash
 
         
